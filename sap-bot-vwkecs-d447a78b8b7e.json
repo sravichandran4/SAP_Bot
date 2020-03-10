@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sap-bot-vwkecs",
+  "private_key_id": "d447a78b8b7e10907279e5e1ec1bcae8af433e7a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC0aDIk1IrIFkIQ\nbZsjjX1hBRU3DDx1/tzpIMeg3KbvVvzjBQENX9drIuWWHT+4QomZUdUE3Oox+Lqp\nOW4v8uaeWA2xmnuIU6/31RwqAFgt5hcA89fPKaJNcLCzmmWKiDhUyrFw36RXG8Y5\nXPfTElLZrCjARg+ljKeXzcH6eUCVMucLHrIS8EeSh2b0lQRbgIhD+JDRRTum8dKV\nOWK7MfvMb3D6oIJT+AfKlzbm+VLPebXkZKGjTmvL8Aocw7iG7rcU1U2mkZhnE2bS\nFI6UZDGNmi31r85wRHY9dpuoShLNiCkVzvwZnjPP5Gqlhs6zXrF+n+fcoQYADWhI\nBsgUx5nNAgMBAAECggEAF/ueEZKxHGZbw/lTiBzAJTdaxFBRHVKTUD6hAJE0yVk5\nZyimz34FPOM3vYayji6c7OVEZKVwUNJYZjS8oY0wpq4yq9X17tVJQwYb/LgXq4pi\nASi+xiB/yLxeu+bznBX91G/Zuj/7he+q9hHriYNvFiwygqpjBsa1uj2KjbS0JuE9\n/TiiC+d5PW0G2+4T84o2c7zIsOKtm3hGp2D7AqRlXphZ+1yFfRKxjt09M6i88h1e\nztr9v2yHwYnFHM6G8DfddCrZb5oE0ak9GV5CxaOwCWgEOZ00HvUNpHE/IsxShckG\nIOPF6GNQoK7MSR7EFAzL/KB8q4V0eoaAPf1HhaD7tQKBgQDYWueKjN24sHAsaCeN\njYjs/eB8R/2+1nrI18eIDDXrjXpYnc/m6yGtGTN+czwro4LIsJTlxuMP/94rqzhG\nApfXpCYVGgNb2+QCq/5rFvr425CFa1WYwDWVbZwdB+trNOK5a8BUp0MUXMIJNrcA\n0tP6pqgFIt8RZxRVWo7uTfksmwKBgQDVdvy7W0jQ0C2wY1Jdtl4Jwfpy7RqsPrS9\nc16bN1eVVZ7RUkVcyQs06KWCLvuiXK7hUyPreEqXLfDmpOr7I4QpogU9CpGS6V4l\nyeZCP2hognlOsjafxwpxdnjEa8n5Txo/muDrZYI95qsD8kNGqzlZkUloHgVNgNH4\nnWbrpQAVtwKBgQDIQTvXLhN7gzQQpkcV6k82rLY/0pK3NOZpR/BTqJmv8T+xDkEE\nx9Zf1denzxl+etXu1CK9m51HjdkiKlTn2DabTkBBf9ZkC9+76V6P2LFr7i6Sj4qm\n3CG8sbux00a/8C962JUoxbh8/G5NAOvaQ0oZ0m/qcSBvhy12418wi9N6yQKBgQDO\nQ2FGMJiVnPLpA6/s+XC4gQVd05n4YccHYNlDpiAtHkSOAq8fTuxTPZHfz0I6ys/4\nzfthZiS9HBkw5J5h+RmVmQbyyqmLiY/9d6/Ux6w9gAVzc2Sw0wVWSaG8OmM5UaQN\nXbyD+Nv2sFMDRy6WtJB/6ZFC1+9LynQZhQ6UGCWS1QKBgHdkwLaKAP+1pxRRZwD+\nNmnPXwNv7UWgV3mZ/KvGTeaxx8j0v4n046l5gcAhq3w2gqvV6xKzJTDThn4fol0i\niOU08gVaF+snhbnwGP7wdVJJosIup5hgK4+tjxgSmt8GkT2trmFw+eunypDctOfA\nK9LibXvwSiflcFuUamBd85O3\n-----END PRIVATE KEY-----\n",
+  "client_email": "sapbot-service-account@sap-bot-vwkecs.iam.gserviceaccount.com",
+  "client_id": "106837922606387086604",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sapbot-service-account%40sap-bot-vwkecs.iam.gserviceaccount.com"
+}

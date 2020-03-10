@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Chatbot for COVID-19</title>
+  </head>
+  <body>
+      <div class="container h-100">
+        <div class="row align-items-center h-100">
+            <div class="col-md-8 col-sm-12 mx-auto">
+                <div class="h-100 justify-content-center">
+                  <!--<h2>SAP Bot</h2>-->
+                    <div class="chat-container" style="overflow: auto; max-height: 80vh">
+                        <!-- chat messages -->
+                        <div class="chat-message col-md-5 offset-md-7 bot-message">
+                          Hi I am SAP, the ultimate assistant for queries about COVID-19. How can I help you?
+                        </div>
+                    </div>
+                    <form id="target">
+                       <input class="input" type="text" value="" placeholder="Enter message..." id="input_message"/>
+                       <input type="submit" hidden>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='custom.js')}}"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!--     <script>
+  // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAlNQwb-3HqDFcPxf1jzd6tRPwr3tiM5fc",
+        authDomain: "sap-bot-vwkecs.firebaseapp.com",
+        databaseURL: "https://sap-bot-vwkecs.firebaseio.com",
+        projectId: "sap-bot-vwkecs",
+        storageBucket: "sap-bot-vwkecs.appspot.com",
+        messagingSenderId: "457198470857",
+        appId: "1:457198470857:web:538431813b6d7e196a2f18"
+      };
+  // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>-->
+  </body>
+</html>
