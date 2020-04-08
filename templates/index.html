@@ -1,56 +1,188 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-      <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Chatbot for COVID-19</title>
-  </head>
+
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Chatbot for COVID-19</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- Bootstrap core CSS -->
+  <link href="../static/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../static/mdb.min.css" rel="stylesheet">
+
+  <style>
+    html,
+    body,
+    header,
+    .view {
+      height: 100%;
+    }
+
+    @media (min-width: 851px) and (max-width: 1440px) {
+
+      html,
+      body,
+      header,
+      .view {
+        height: 850px;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .view {
+        height: 1000px;
+      }
+    }
+
+    @media (min-width: 451px) and (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .view {
+        height: 1200px;
+      }
+    }
+
+    @media (max-width: 450px) {
+
+      html,
+      body,
+      header,
+      .view {
+        height: 1400px;
+      }
+    }
+
+    .intro-2 {
+      background: url("https://mdbootstrap.com/img/Photos/Others/forest1.jpg")no-repeat center center;
+      background-size: cover;
+    }
+
+    .top-nav-collapse {
+      background-color: #3f51b5 !important;
+    }
+
+    .navbar:not(.top-nav-collapse) {
+      background: transparent !important;
+    }
+
+    @media (max-width: 768px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #3f51b5 !important;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #3f51b5 !important;
+      }
+    }
+
+    .rgba-gradient {
+      background: -webkit-linear-gradient(98deg, rgba(22, 91, 231, 0.5), rgba(255, 32, 32, 0.5) 100%);
+      background: -webkit-gradient(linear, 98deg, from(rgba(22, 91, 231, 0.5)), to(rgba(255, 32, 32, 0.5)));
+      background: linear-gradient(to 98deg, rgba(22, 91, 231, 0.5), rgba(255, 32, 32, 0.5) 100%);
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.85);
+    }
+
+    h6 {
+      line-height: 1.7;
+    }
+  </style>
+
+</head>
+
+
   <body>
-      <div class="container h-100">
-        <div class="row align-items-center h-100">
-            <div class="col-md-8 col-sm-12 mx-auto">
-                <div class="h-100 justify-content-center">
-                  <!--<h2>SAP Bot</h2>-->
-                    <div class="chat-container" style="overflow: auto; max-height: 80vh">
-                        <!-- chat messages -->
-                        <div class="chat-message col-md-5 offset-md-7 bot-message">
-                          Hi I am SAP, the ultimate assistant for queries about COVID-19. How can I help you?
-                        </div>
-                    </div>
-                    <form id="target">
-                       <input class="input" type="text" value="" placeholder="Enter message..." id="input_message"/>
-                       <input type="submit" hidden>
-                    </form>
-                </div>
-            </div>
-        </div>
+  <!--Main Navigation-->
+
+
+
+    <!--Intro Section-->
+
+
+    <!-- Button trigger modal -->
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a class="btn-floating btn-lg red waves-effect waves-light" data-toggle="modal" data-target="#fullHeightModalRight">
+        <i class="fas fa-pencil-alt"></i>
+      </a>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script src="{{ url_for('static', filename='custom.js')}}"></script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+  <!-- Full Height Modal Right -->
+  <div class="modal fade right" id="fullHeightModalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+    <div class="modal-dialog modal-full-height modal-right" role="document">
 
-<!--     <script>
-  // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyAlNQwb-3HqDFcPxf1jzd6tRPwr3tiM5fc",
-        authDomain: "sap-bot-vwkecs.firebaseapp.com",
-        databaseURL: "https://sap-bot-vwkecs.firebaseio.com",
-        projectId: "sap-bot-vwkecs",
-        storageBucket: "sap-bot-vwkecs.appspot.com",
-        messagingSenderId: "457198470857",
-        appId: "1:457198470857:web:538431813b6d7e196a2f18"
-      };
-  // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-    </script>-->
-  </body>
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title w-100" id="myModalLabel">SAP_Bot one stop for queries about COVID-19</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container h-100 w-100">
+
+         <div class="row align-items-center h-100 w-100">
+          <!--   <div class="col-md-8 col-sm-12 mx-auto">-->
+              <!--   <div class="h-100 justify-content-center">
+                   <h2>SAP Bot</h2>-->
+                     <div class="chat-container" style="overflow: auto; max-height: 80vh">
+                         <!-- chat messages -->
+                         <div class="chat-message bot-message">
+                           Hi I am SAP, the ultimate assistant for queries about COVID-19. How can I help you?
+                         </div>
+                     </div>
+                     <form id="target">
+                        <input class="input" type="text" value="" placeholder="Enter message..." id="input_message" style="width: 300px"/>
+                        <input type="submit" hidden>
+                     </form>
+                  <!--  </div>
+          </div>-->
+         </div>
+     </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Main Navigation-->
+
+  <!--  SCRIPTS  -->
+  <!-- JQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="{{ url_for('static', filename='custom.js')}}"></script>
+  <script type="text/javascript" src="../static/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../static/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../static/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../static/mdb.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+</body>
+
 </html>

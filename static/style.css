@@ -5,31 +5,31 @@ body,html {
 .chat-container {
   /*margin: 0px;*/
   padding: 0px;
-  width: 500px;
+  width: 300px;
   /*margin: 35px 0px;*/
   margin-left: 15%;
   margin-right: 15%;
 }
 
 .chat-message {
-  padding: 6px;
-  border-radius: 6px;
-  margin-bottom: 3px;
+  padding: 3px;
+  border-radius: 3px;
+  margin-bottom: 2px;
 }
 
 .bot-message {
-  background: #22b538;
-  max-width: 300px;
+  background: grey;
+  max-width: 200px;
   color: white;
   margin-left: auto;
 
 }
 
 .human-message {
-  background: dodgerblue;
-  max-width: 300px;
+  background: darkgrey;
+  max-width: 200px;
   color: white;
-  margin: 13px 1px;
+  margin: 6px 1px;
 }
 
 .input {

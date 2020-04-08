@@ -4,7 +4,7 @@ function submit_message(message) {
         function handle_response(data) {
           // append the bot repsonse to the div
           $('.chat-container').append(`
-                <div class="chat-message col-md-5 offset-md-7 bot-message">
+                <div class="chat-message bot-message">
                     ${data.message}
                 </div>
           `)
@@ -29,7 +29,7 @@ function submit_message(message) {
 
             // loading
             $('.chat-container').append(`
-                <div class="chat-message text-center col-md-2 offset-md-10 bot-message" id="loading">
+                <div class="chat-message text-center bot-message" id="loading">
                     <b>...</b>
                 </div>
             `)
@@ -39,4 +39,4 @@ function submit_message(message) {
 
             // send the message
             submit_message(input_message)
-        });  
+        });

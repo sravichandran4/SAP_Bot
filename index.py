@@ -3,12 +3,6 @@ import os
 import dialogflow
 import requests
 import json
-#import pusher
-#import firebase_admin
-#from firebase_admin import credentials
-
-#cred = credentials.Certificate("/Users/srudhir/Documents/chatbot/sap-bot-vwkecs-firebase-adminsdk-nof5b-ec68c59e41.json")
-#firebase_admin.initialize_app(cred)
 app = Flask(__name__)
 
 @app.route('/')
@@ -18,21 +12,6 @@ def index():
 # run Flask app
 if __name__ == "__main__":
     app.run()
-
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    data = request.get_json(silent=True)
-    if data['queryResult']['queryText'] == 'yes':
-        reply = {
-            "fulfillmentText": "Thank You",
-        }
-        return jsonify(reply)
-
-    elif data['queryResult']['queryText'] == 'no':
-        reply = {
-            "fulfillmentText": "What else can I help you with?",
-        }
-        return jsonify(reply)
 
 
 def detect_intent_texts(project_id, session_id, text, language_code):
