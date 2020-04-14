@@ -3,6 +3,7 @@ import os
 import dialogflow
 import requests
 import json
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -11,7 +12,7 @@ def index():
 
 # run Flask app
 if __name__ == "__main__":
-    app.run()
+    app.run( host='0.0.0.0', debug=True)
 
 
 def detect_intent_texts(project_id, session_id, text, language_code):
