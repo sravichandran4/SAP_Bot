@@ -1,0 +1,271 @@
+{% extends "layout_single_page.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-xl-6 col-md-12">
+
+        <div class="col-xl-12 mb-xl-0 mb-4">
+          <div class="card card-cascade cascading-admin-card">
+            <div class="row">
+              <div class="col-md-4">
+                  <div class="data">
+                    <h4 class="text-uppercase"><kbd class="rounded-0">CASES</kbd></h4>
+                    <div class="d-flex justify-content-start">
+                      <h1 class="font-weight-bold pl-3 pt-3">
+                        {{ data['confirmed']['total'] }}
+                      </h1>
+                    </div>
+                    <div class="d-flex justify-content-start pl-3">
+                      <h2>
+                        {% if data['confirmed']['status'] == "increased" %}
+                          <span><i class="fas fa-arrow-up text-danger pr-3"></i>{{ data['confirmed']['diffence'] }}</span>
+                        {% else %}
+                          <span><i class="fas fa-arrow-down text-success"></i>{{ data['confirmed']['diffence'] }}</span>
+                        {% endif %}
+                      </h2>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="shadow winter-neva-gradient rounded">
+                  <canvas class="pl-1 pr-1" id="caseschart"  width="410" height="200"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-12 mb-xl-0 mb-4">
+          <div class="card card-cascade cascading-admin-card">
+            <div class="row">
+              <div class="col-md-4">
+                  <div class="data">
+                    <h4 class="text-uppercase"><kbd class="rounded-0">DEATHS</kbd></h4>
+                    <div class="d-flex justify-content-start">
+                      <h1 class="font-weight-bold pl-3 pt-3">
+                        {{ data['deaths']['total'] }}
+                      </h1>
+                    </div>
+                    <div class="d-flex justify-content-start pl-3">
+                      <h2>
+                        {% if data['deaths']['status'] == "increased" %}
+                          <span><i class="fas fa-arrow-up text-danger pr-3"></i>{{ data['deaths']['diffence'] }}</span>
+                        {% else %}
+                          <span><i class="fas fa-arrow-down text-success"></i>{{ data['deaths']['diffence'] }}</span>
+                        {% endif %}
+                      </h2>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-8">
+                <div class="shadow juicy-peach-gradient rounded">
+                  <canvas class="pl-1 pr-1" id="deathschart"  width="410" height="200"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-12 mb-xl-0 mb-4">
+          <div class="card card-cascade cascading-admin-card">
+            <div class="row">
+              <div class="col-md-4">
+
+                  <div class="data">
+                    <h4 class="text-uppercase"><kbd class="rounded-0">recovered</kbd></h4>
+                    <div class="d-flex justify-content-start">
+                      <h1 class="font-weight-bold pl-3 pt-3">
+                        {{ data['recovered']['total'] }}
+                      </h1>
+                    </div>
+                    <div class="d-flex justify-content-start pl-3">
+                      <h2>
+                        {% if data['recovered']['status'] == "increased" %}
+                          <span><i class="fas fa-arrow-up text-success pr-3"></i>{{ data['recovered']['diffence'] }}</span>
+                        {% else %}
+                          <span><i class="fas fa-arrow-down text-danger"></i>{{ data['recovered']['diffence'] }}</span>
+                        {% endif %}
+                      </h2>
+                    </div>
+                  </div>
+
+              </div>
+              <div class="col-md-8">
+                <div class="shadow dusty-grass-gradient rounded">
+                  <canvas class="pl-1 pr-1"  id="recoveredchart"  width="410" height="200"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div
+
+      <div class="card shadow col-xl-6 col-md-12">
+        <div class="card-body card-body-cascade">
+          <div class="col-md-12 panel-title mb-3 mt-3">
+            <h5>
+              <span class="px-4 py-3 col-12 z-depth-1-half winter-neva-gradient text-monospace align-middle" style="border-radius: 5px;">
+                COVID 19 cases in
+                <kbd><img src="/static/img/flags/{{ cc }}.png" class="flag mr-2">{{ country }}</kbd>
+                on <kbd>{{ tabledata[0]["date"] }}</kbd>
+              </span>
+            </h5>
+          </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Cases</th>
+                  <th>Deaths</th>
+                  <th>Recovered</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for dayentry in tabledata %}
+                <tr>
+                  <td>{{ dayentry["date"] }}</td>
+                  <td>{{ dayentry["confirmed"] }}</td>
+                  <td>{{ dayentry["deaths"] }}</td>
+                  <td>{{ dayentry["recovered"] }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+
+            </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149651524-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-149651524-2');
+</script>
+<script>
+
+  Chart.defaults.global.animationSteps = 30;
+  Chart.defaults.global.animationSteps = 30;
+  Chart.defaults.global.tooltipXPadding = 10;
+  Chart.defaults.global.tooltipYPadding = 10;
+  Chart.defaults.global.tooltipCornerRadius = 0;
+  Chart.defaults.global.tooltipTitleFontStyle = "normal";
+  Chart.defaults.global.animationEasing = "easeOutBounce";
+  Chart.defaults.global.responsive = false;
+  Chart.defaults.global.scaleFontSize = 12;
+
+  var barData_cases = {
+    labels : [
+      {% for item in dates %}
+        "{{ item }}",
+      {% endfor %}
+    ],
+    datasets : [
+      {
+      label: "Cases",
+      fillColor: "rgba(46, 134, 193,0.4)",
+      data : [
+          {% for item in cases %}
+            {{ item }},
+          {% endfor %}
+        ]
+      }
+    ]
+  }
+
+  var barData_deaths = {
+    labels : [
+      {% for item in dates %}
+        "{{ item }}",
+      {% endfor %}
+    ],
+    datasets : [
+      {
+      label: "Deaths",
+      fillColor: "rgba(205, 97, 85 ,0.4)",
+      data : [
+          {% for item in deaths %}
+            {{ item }},
+          {% endfor %}
+        ]
+      }
+    ]
+  }
+
+  var barData_recovered = {
+    labels : [
+      {% for item in dates %}
+        "{{ item }}",
+      {% endfor %}
+    ],
+    datasets : [
+      {
+        label: "Recovered",
+        fillColor: "rgba(39, 174, 96,0.4)",
+        data : [
+            {% for item in recovered %}
+               {{ item }},
+            {% endfor %}
+          ]
+      }
+    ]
+  }
+
+
+  // get bar chart canvas
+  var caseschart = document.getElementById("caseschart").getContext("2d");
+  var deathschart = document.getElementById("deathschart").getContext("2d");
+  var recoveredchart = document.getElementById("recoveredchart").getContext("2d");
+
+  steps = 5
+  casesmax = {{ casesmax }}
+  var LineChartDemo1 = new Chart(caseschart).Line(barData_cases, {
+    scaleOverride: true,
+    scaleSteps: steps,
+    scaleStepWidth: Math.ceil(casesmax / steps),
+    scaleStartValue: 0,
+    scaleShowVerticalLines: true,
+    scaleShowGridLines : true,
+    bezierCurve: false,
+  });
+
+  deathsmax = {{ deathsmax }}
+  var LineChartDemo2 = new Chart(deathschart).Line(barData_deaths, {
+    scaleOverride: true,
+    scaleSteps: steps,
+    scaleStepWidth: Math.ceil(deathsmax / steps),
+    scaleStartValue: 0,
+    scaleShowVerticalLines: true,
+    scaleShowGridLines : true,
+    bezierCurve: false,
+  });
+
+  recoveredmax = {{ recoveredmax }}
+  var LineChartDemo3 = new Chart(recoveredchart).Line(barData_recovered, {
+    scaleOverride: true,
+    scaleSteps: steps,
+    scaleStepWidth: Math.ceil(recoveredmax / steps),
+    scaleStartValue: 0,
+    scaleShowVerticalLines: true,
+    scaleShowGridLines : true,
+    barShowStroke : true
+  });
+
+
+</script>
+
+
+{% endblock %}

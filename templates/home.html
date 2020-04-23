@@ -1,0 +1,359 @@
+{% extends "layout_single_page.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-xl-6 col-md-12">
+
+        <div class="col-xl-12 mb-xl-0 mb-4">
+          <div class="card card-cascade cascading-admin-card">
+            <div class="row">
+              <div class="col-md-4">
+                  <div class="data">
+                    <h4 class="text-uppercase"><kbd class="rounded-0">CASES</kbd></h4>
+                    <div class="d-flex justify-content-start">
+                      <h1 class="font-weight-bold pl-3 pt-3">
+                        {{ data['confirmed']['total'] }}
+                      </h1>
+                    </div>
+                    <div class="d-flex justify-content-start pl-3">
+                      <h2>
+                        {% if data['confirmed']['status'] == "increased" %}
+                          <span><i class="fas fa-arrow-up text-danger pr-3"></i>{{ data['confirmed']['diffence'] }}</span>
+                        {% else %}
+                          <span><i class="fas fa-arrow-down text-success"></i>{{ data['confirmed']['diffence'] }}</span>
+                        {% endif %}
+                      </h2>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="shadow winter-neva-gradient rounded">
+                  <canvas class="pl-1 pr-1" id="caseschart"  width="410" height="200"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-12 mb-xl-0 mb-4">
+          <div class="card card-cascade cascading-admin-card">
+            <div class="row">
+              <div class="col-md-4">
+                  <div class="data">
+                    <h4 class="text-uppercase"><kbd class="rounded-0">DEATHS</kbd></h4>
+                    <div class="d-flex justify-content-start">
+                      <h1 class="font-weight-bold pl-3 pt-3">
+                        {{ data['deaths']['total'] }}
+                      </h1>
+                    </div>
+                    <div class="d-flex justify-content-start pl-3">
+                      <h2>
+                        {% if data['deaths']['status'] == "increased" %}
+                          <span><i class="fas fa-arrow-up text-danger pr-3"></i>{{ data['deaths']['diffence'] }}</span>
+                        {% else %}
+                          <span><i class="fas fa-arrow-down text-success"></i>{{ data['deaths']['diffence'] }}</span>
+                        {% endif %}
+                      </h2>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-8">
+                <div class="shadow juicy-peach-gradient rounded">
+                  <canvas class="pl-1 pr-1" id="deathschart"  width="410" height="200"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-12 mb-xl-0 mb-4">
+          <div class="card card-cascade cascading-admin-card">
+            <div class="row">
+              <div class="col-md-4">
+
+                  <div class="data">
+                    <h4 class="text-uppercase"><kbd class="rounded-0">recovered</kbd></h4>
+                    <div class="d-flex justify-content-start">
+                      <h1 class="font-weight-bold pl-3 pt-3">
+                        {{ data['recovered']['total'] }}
+                      </h1>
+                    </div>
+                    <div class="d-flex justify-content-start pl-3">
+                      <h2>
+                        {% if data['recovered']['status'] == "increased" %}
+                          <span><i class="fas fa-arrow-up text-success pr-3"></i>{{ data['recovered']['diffence'] }}</span>
+                        {% else %}
+                          <span><i class="fas fa-arrow-down text-danger"></i>{{ data['recovered']['diffence'] }}</span>
+                        {% endif %}
+                      </h2>
+                    </div>
+                  </div>
+
+              </div>
+              <div class="col-md-8">
+                <div class="shadow dusty-grass-gradient rounded">
+                  <canvas class="pl-1 pr-1"  id="recoveredchart"  width="410" height="200"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div
+
+      <div class="card shadow col-xl-6 col-md-12">
+        <div class="card-body card-body-cascade">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Country</th>
+                  <th>Cases</th>
+                  <th>Deaths</th>
+                  <th>Recovered</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><img src="/static/img/flags/us.png" class="flag mr-2">
+                    <a href="/country/US">United States</a>
+                  </td>
+                  <td>{{ country["US"]["confirmed"] }}</td>
+                  <td>{{ country["US"]["deaths"] }}</td>
+                  <td>{{ country["US"]["recovered"] }}</td>
+                </tr>
+                <tr>
+                  <td><img src="/static/img/flags/es.png" class="flag mr-2">
+                    <a href="/country/Spain">Spain</a>
+                  </td>
+                  <td>{{ country["Spain"]["confirmed"] }}</td>
+                  <td>{{ country["Spain"]["deaths"] }}</td>
+                  <td>{{ country["Spain"]["recovered"] }}</td>
+                <tr>
+                  <td><img src="/static/img/flags/it.png" class="flag mr-2"><a href="/country/Italy">Italy</a></td>
+                  <td>{{ country["Italy"]["confirmed"] }}</td>
+                  <td>{{ country["Italy"]["deaths"] }}</td>
+                  <td>{{ country["Italy"]["recovered"] }}</td>
+                </tr>
+                <tr>
+                  <td><img src="/static/img/flags/fr.png" class="flag mr-2"><a href="/country/France">France</a></td>
+                  <td>{{ country["France"]["confirmed"] }}</td>
+                  <td>{{ country["France"]["deaths"] }}</td>
+                  <td>{{ country["France"]["recovered"] }}</td>
+                </tr>
+                <tr>
+                  <td><img src="/static/img/flags/de.png" class="flag mr-2"><a href="/country/Germany">Germany</a></td>
+                  <td>{{ country["Germany"]["confirmed"] }}</td>
+                  <td>{{ country["Germany"]["deaths"] }}</td>
+                  <td>{{ country["Germany"]["recovered"] }}</td>
+                <tr>
+                  <td><img src="/static/img/flags/gb.png" class="flag mr-2"><a href="/country/UK">United Kingdom</a></td>
+                  <td>{{ country["UK"]["confirmed"] }}</td>
+                  <td>{{ country["UK"]["deaths"] }}</td>
+                  <td>{{ country["UK"]["recovered"] }}</td>
+                </tr>
+                <tr>
+                  <td><img src="/static/img/flags/cn.png" class="flag mr-2"><a href="/country/China">China</a></td>
+                  <td>{{ country["China"]["confirmed"] }}</td>
+                  <td>{{ country["China"]["deaths"] }}</td>
+                  <td>{{ country["China"]["recovered"] }}</td>
+                </tr>
+                <tr>
+                  <td><img src="/static/img/flags/tr.png" class="flag mr-2"><a href="/country/Turkey">Turkey</a></td>
+                  <td>{{ country["Turkey"]["confirmed"] }}</td>
+                  <td>{{ country["Turkey"]["deaths"] }}</td>
+                  <td>{{ country["Turkey"]["recovered"] }}</td>
+                <tr>
+                  <td><img src="/static/img/flags/ir.png" class="flag mr-2"><a href="/country/Iran">Iran</a></td>
+                  <td>{{ country["Iran"]["confirmed"] }}</td>
+                  <td>{{ country["Iran"]["deaths"] }}</td>
+                  <td>{{ country["Iran"]["recovered"] }}</td>
+                </tr>
+                <tr>
+                  <td><img src="/static/img/flags/be.png" class="flag mr-2"><a href="/country/Belgium">Belgium</a></td>
+                  <td>{{ country["Belgium"]["confirmed"] }}</td>
+                  <td>{{ country["Belgium"]["deaths"] }}</td>
+                  <td>{{ country["Belgium"]["recovered"] }}</td>
+                </tr>
+                <tr>
+                  <td><img src="/static/img/flags/in.png" class="flag mr-2"><a href="/country/India">India</a></td>
+                  <td>{{ country["India"]["confirmed"] }}</td>
+                  <td>{{ country["India"]["deaths"] }}</td>
+                  <td>{{ country["India"]["recovered"] }}</td>
+                </tr>
+              </tbody>
+
+            </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fullHeightModalRight">
+      <i class="fas fa-pencil-alt"></i>
+      </button>
+    </div>
+    <div class="modal fade right" id="fullHeightModalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true">
+
+      <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+      <div class="modal-dialog modal-full-height modal-right" role="document">
+
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="chat-container" style="overflow: auto; max-height: 80vh">
+                <!-- chat messages -->
+                <div class="chat-message bot-message">
+                  Hi I am SAP, the ultimate assistant for queries about COVID-19. How can I help you?
+                </div>
+            </div>
+            <form id="target">
+               <input class="input" type="text" value="" placeholder="Enter message..." id="input_message" style="width: 300px"/>
+               <input type="submit" hidden>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <!-- Full Height Modal Right -->
+
+
+  </div>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149651524-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-149651524-2');
+</script>
+<script>
+
+  Chart.defaults.global.animationSteps = 30;
+  Chart.defaults.global.animationSteps = 30;
+  Chart.defaults.global.tooltipXPadding = 10;
+  Chart.defaults.global.tooltipYPadding = 10;
+  Chart.defaults.global.tooltipCornerRadius = 0;
+  Chart.defaults.global.tooltipTitleFontStyle = "normal";
+  Chart.defaults.global.animationEasing = "easeOutBounce";
+  Chart.defaults.global.responsive = false;
+  Chart.defaults.global.scaleFontSize = 12;
+
+  var barData_cases = {
+    labels : [
+      {% for item in dates %}
+        "{{ item }}",
+      {% endfor %}
+    ],
+    datasets : [
+      {
+      label: "Cases",
+      fillColor: "rgba(46, 134, 193,0.4)",
+      data : [
+          {% for item in cases %}
+            {{ item }},
+          {% endfor %}
+        ]
+      }
+    ]
+  }
+
+  var barData_deaths = {
+    labels : [
+      {% for item in dates %}
+        "{{ item }}",
+      {% endfor %}
+    ],
+    datasets : [
+      {
+      label: "Deaths",
+      fillColor: "rgba(205, 97, 85 ,0.4)",
+      data : [
+          {% for item in deaths %}
+            {{ item }},
+          {% endfor %}
+        ]
+      }
+    ]
+  }
+
+  var barData_recovered = {
+    labels : [
+      {% for item in dates %}
+        "{{ item }}",
+      {% endfor %}
+    ],
+    datasets : [
+      {
+        label: "Recovered",
+        fillColor: "rgba(39, 174, 96,0.4)",
+        data : [
+            {% for item in recovered %}
+               {{ item }},
+            {% endfor %}
+          ]
+      }
+    ]
+  }
+
+
+  // get bar chart canvas
+  var caseschart = document.getElementById("caseschart").getContext("2d");
+  var deathschart = document.getElementById("deathschart").getContext("2d");
+  var recoveredchart = document.getElementById("recoveredchart").getContext("2d");
+
+  steps = 5
+  casesmax = {{ casesmax }}
+  var LineChartDemo1 = new Chart(caseschart).Line(barData_cases, {
+    scaleOverride: true,
+    scaleSteps: steps,
+    scaleStepWidth: Math.ceil(casesmax / steps),
+    scaleStartValue: 0,
+    scaleShowVerticalLines: true,
+    scaleShowGridLines : true,
+    bezierCurve: false,
+  });
+
+  deathsmax = {{ deathsmax }}
+  var LineChartDemo2 = new Chart(deathschart).Line(barData_deaths, {
+    scaleOverride: true,
+    scaleSteps: steps,
+    scaleStepWidth: Math.ceil(deathsmax / steps),
+    scaleStartValue: 0,
+    scaleShowVerticalLines: true,
+    scaleShowGridLines : true,
+    bezierCurve: false,
+  });
+
+  recoveredmax = {{ recoveredmax }}
+  var LineChartDemo3 = new Chart(recoveredchart).Line(barData_recovered, {
+    scaleOverride: true,
+    scaleSteps: steps,
+    scaleStepWidth: Math.ceil(recoveredmax / steps),
+    scaleStartValue: 0,
+    scaleShowVerticalLines: true,
+    scaleShowGridLines : true,
+    barShowStroke : true
+  });
+
+
+</script>
+
+
+{% endblock %}
