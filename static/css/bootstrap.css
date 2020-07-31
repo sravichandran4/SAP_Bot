@@ -214,7 +214,7 @@ caption {
   padding-bottom: 0.75rem;
   color: #6c757d;
   text-align: left;
-  caption-side: bottom;
+  caption-side: top;
 }
 
 th {
@@ -583,6 +583,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  padding-top: 200px;
 }
 
 .row {

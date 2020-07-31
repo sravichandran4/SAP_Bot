@@ -7,9 +7,9 @@
 {% block body %}
 
   <div class="container-fluid">
-    <div class="row">
+    <div class="row mt-5">
 
-      <div class="col-xl-6 col-md-12">
+      <div class="col-xl-6 col-md-12 mt-5">
 
         <div class="col-xl-12 mb-xl-0 mb-4">
           <div class="card card-cascade cascading-admin-card">
@@ -108,14 +108,13 @@
 
       </div
 
-      <div class="card shadow col-xl-6 col-md-12">
-        <div class="card-body card-body-cascade">
+      <div class="card shadow col-xl-6 col-md-12 mt-5">
+        <div class="card-body card-body-cascade mt-5">
           <div class="col-md-12 panel-title mb-3 mt-3">
             <h5>
               <span class="px-4 py-3 col-12 z-depth-1-half winter-neva-gradient text-monospace align-middle" style="border-radius: 5px;">
                 COVID 19 cases in
                 <kbd><img src="/static/img/flags/{{ cc }}.png" class="flag mr-2">{{ country }}</kbd>
-                on <kbd>{{ tabledata[0]["date"] }}</kbd>
               </span>
             </h5>
           </div>
@@ -144,6 +143,51 @@
       </div>
 
     </div>
+
+    <!-- To change the direction of the modal animation change .right class-->
+    <div class="modal fade right" id="fluidModalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+
+
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <p class="heading lead">Chatbot for COVID-19</p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="chat-container" style="overflow: auto; max-height: 80vh">
+              <div class="alert alert-warning chat-message" role="alert">
+                Welcome to COVID-19 assistant, please ask me queries about COVID-19 pandemic. You can ask me questions like<br>
+                <ul>
+                  <li>Symptoms of COVID-19</li>
+                  <li>How does COVID-19 spread?</li>
+                  <li>What are COVID-19 treatments?</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+            <div class="modal-footer">
+
+              <form id="target">
+
+                <div class="form-group">
+                    <textarea class="form-control col-lg-12"
+                      style="width: 350px"
+                      id="input_message"
+                      rows="4"
+                      placeholder="Enter Your Question"></textarea>
+                </div>
+
+                <input type="submit" hidden>
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Side Modal Top Right -->
 
   </div>
 
