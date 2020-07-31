@@ -3,8 +3,21 @@ import os
 import dialogflow
 import requests
 import json
+import datetime
 
 app = Flask(__name__)
+
+def get_current_count():
+    data = {}
+    URL = "https://corona.lmao.ninja/v2/all"
+    r = requests.get(url = URL)
+    data = r.json()
+    latest = {}
+    latest['date'] = datetime.datetime.fromtimestamp((data['updated'] / 1000.0)).strftime('%c')
+    latest['confirmed'] = data['cases']
+    latest['deaths'] = data['deaths']
+    latest['recovered'] = data['recovered']
+    return latest
 
 @app.route('/')
 def index():
@@ -14,6 +27,7 @@ def index():
     confirmed = {}
     deaths = {}
     recovered = {}
+    latest = get_current_count()
     with open('data/global.json') as f:
         d = json.load(f)
         current = d[-1]
@@ -62,24 +76,37 @@ def index():
     country = {}
     with open("data/timeseries.json") as f:
         countrydata = json.load(f)
-        country["US"] = countrydata["US"][-1]
-        country["Spain"] = countrydata["Spain"][-1]
-        country["Italy"] = countrydata["Italy"][-1]
-        country["France"] = countrydata["France"][-1]
-        country["Germany"] = countrydata["Germany"][-1]
-        country["UK"] = countrydata["United Kingdom"][-1]
-        country["China"] = countrydata["China"][-1]
-        country["Turkey"] = countrydata["Turkey"][-1]
-        country["Iran"] = countrydata["Iran"][-1]
-        country["Belgium"] = countrydata["Belgium"][-1]
-        country["India"] = countrydata["India"][-1]
+    country["US"] = countrydata["US"][-1]
+    country["Spain"] = countrydata["Spain"][-1]
+    country["Italy"] = countrydata["Italy"][-1]
+    country["France"] = countrydata["France"][-1]
+    country["Germany"] = countrydata["Germany"][-1]
+    country["UK"] = countrydata["United Kingdom"][-1]
+    country["China"] = countrydata["China"][-1]
+    country["Turkey"] = countrydata["Turkey"][-1]
+    country["Iran"] = countrydata["Iran"][-1]
+    country["Belgium"] = countrydata["Belgium"][-1]
+    country["India"] = countrydata["India"][-1]
 
-        casesmax=int(max(cases) * 1.1)
-        deathsmax=int(max(deaths) * 1.1)
-        recoveredmax=int(max(recovered) * 1.1)
+    casesmax=int(max(cases) * 1.1)
+    deathsmax=int(max(deaths) * 1.1)
+    recoveredmax=int(max(recovered) * 1.1)
+
+    globaltable = []
+    globaltabledates = []
+    for key,vals in countrydata.items():
+        coun = {}
+        coun['country'] = key
+        coun['data'] = vals[-7:]
+        if coun['country'] == "Afghanistan":
+            for e in coun['data']:
+                globaltabledates.append(e['date'])
+        globaltable.append(coun)
+
 
     return render_template(
         "home.html",
+        latest=latest,
         casesmax=casesmax,
         deathsmax=deathsmax,
         recoveredmax=recoveredmax,
@@ -88,7 +115,9 @@ def index():
         cases=cases,
         deaths=deaths,
         recovered=recovered,
-        country=country
+        country=country,
+        globaltable=globaltable,
+        globaltabledates=globaltabledates
     )
     #return render_template('index.html')
 

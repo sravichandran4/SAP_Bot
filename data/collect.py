@@ -18,14 +18,18 @@ def get_by_country():
         json.dump(data, json_file)
     return 0
 
-def show_by_country(country):
-    data = {}
+def show_by_country():
+    globaltable = []
     with open("timeseries.json") as f:
-        data = json.load(f)
-        for key,val in data.items():
-            print(key)
+        data2 = json.load(f)
+    for key,vals in data2.items():
+        coun = {}
+        coun['country'] = key
+        coun['data'] = vals[-5:]
+        globaltable.append(coun)
+    print(globaltable)
 
 if __name__ == '__main__':
     get_global()
     get_by_country()
-    #show_by_country("US")
+    #show_by_country()
